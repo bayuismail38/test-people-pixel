@@ -1,6 +1,6 @@
-import { FileImport, StatusFileImport, StatusFileImportInsert } from "../model/fileimportworker.ts";
-import { masterImport } from "../model/masterImport.ts";
-import type Migration from "../types/migration";
+import { FileImport, StatusFileImport, StatusFileImportInsert } from "../model/fileimportworker.js";
+import { masterImport } from "../model/masterImport.js";
+import type Migration from "../types/migration.js";
 
 const migration: Migration[] = [
     {

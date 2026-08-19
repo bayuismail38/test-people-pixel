@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { Router } from "express";
 import multer from "multer";
-import { upload } from "../../handler/storage.ts";
+import { upload } from "../../handler/storage.js";
 import path from "path";
 import { Worker } from "worker_threads";
 import { fileURLToPath } from "url";

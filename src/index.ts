@@ -2,9 +2,9 @@ import express from "express";
 import type { Application, Request, Response } from "express";
 import cors from 'cors'
 import { createServer } from "http";
-import RouteBulk from "./internal/mentions/bulk.ts";
-import RouteMentions from "./mentions/search.ts";
-import routeStats from "./mentions/stats.ts";
+import RouteBulk from "./internal/mentions/bulk.js";
+import RouteMentions from "./mentions/search.js";
+import routeStats from "./mentions/stats.js";
 
 const app: Application = express();
 const httpServer = createServer(app);

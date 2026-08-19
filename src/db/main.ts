@@ -1,5 +1,5 @@
-import { db } from './db.ts';
-import { migration } from './run.ts';
+import { db } from './db.js';
+import { migration } from './run.js';
 
 
 async function main() {

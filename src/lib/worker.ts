@@ -1,6 +1,6 @@
 import { parentPort, workerData } from "worker_threads";
-import { db } from "../db/db.ts";
-import { masterImportDataTransform } from "../types/MasterImport.ts";
+import { db } from "../db/db.js";
+import { masterImportDataTransform } from "../types/MasterImport.js";
 interface WorkerDataInput {
   bufferArray: Uint8Array;
   fileName: string;

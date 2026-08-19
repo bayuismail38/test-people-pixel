@@ -1,4 +1,4 @@
-import ErrorHandler from "./error.ts";
+import ErrorHandler from "./error.js";
 
 export default class ResponseHandler<T extends Record<string, any> | Array<Record<string, any>>> {
     private Data: T | null | undefined;
