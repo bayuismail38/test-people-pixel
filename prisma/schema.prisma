@@ -8,10 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Author {
-    name      String @unique @id
-}
-
 model StatusFileImport{
     id        Int      @id @default(autoincrement())
     name      String
@@ -25,5 +21,17 @@ model FileImport{
     status    StatusFileImport @relation(fields: [status_id], references: [id])
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
+}
+
+model ImportedData {
+    id        Int      @id @default(autoincrement())
+    external_id String   @unique
+    title     String? @db.VarChar(255)
+    content  String? @db.LongText
+    url     String? @db.VarChar(255)
+    author_name String? @unique @db.VarChar(255)
+    published_at DateTime?
+    engagement Int?
+    source String? @db.VarChar(255)
 }
 
