@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --build --clean && tsc",
-    "migrate": "ts-node src/db/main.ts",
+    "migrate": "ts-node ./src/db/main.ts",
     "dev": "nodemon --watch src --exec ts-node --transpile-only src/index.ts"
   },
   "keywords": [],
