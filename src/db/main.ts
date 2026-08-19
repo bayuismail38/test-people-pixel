@@ -14,7 +14,7 @@ async function main() {
           try {
             console.log(migrations)
             await client.query('BEGIN'); // Mulai transaksi aman
-            await client.query(migrations.query);
+            await client.query(migrations.query as string);
             await client.query('COMMIT'); // Simpan permanen jika sukses
             console.log(`✅ Sukses UP: ${migrations.query}`);
           } catch (err: any) {

@@ -2,8 +2,6 @@ import type { Request, Response } from "express";
 import { Router } from "express";
 import { db } from "../db/db.ts";
 import ResponseHandler from "../handler/errorResponse.ts";
-import type { MasterImport } from "../types/MasterImport.ts";
-import type { Chart, ChartDay } from "../types/Chart.ts";
 
 
 const routeStats = Router();
