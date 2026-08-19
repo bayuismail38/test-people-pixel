@@ -19,4 +19,4 @@ const masterImportDataTransform = (data:any): MasterImport => {
         engagement: data.engagement !== null ? parseInt(data.engagement) : null,
     };
 }
-export {masterImportDataTransform};
+export { masterImportDataTransform };

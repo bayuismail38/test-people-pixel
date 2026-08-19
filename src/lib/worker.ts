@@ -12,9 +12,9 @@ try {
 
 
     try {
-        client.query('BEGIN');
-        client.query("INSERT INTO file_import (file_name, status_id) VALUES ($1, $2)", [fileName, 1]);
-        client.query('COMMIT');
+        await client.query('BEGIN');
+        await client.query("INSERT INTO file_import (file_name, status_id) VALUES ($1, $2)", [fileName, 1]);
+        await client.query('COMMIT');
     } catch (err: any) {
         await client.query('ROLLBACK');
     }
@@ -50,7 +50,7 @@ try {
                 if(!find) {
                     const query = "INSERT INTO master_import (external_id, source, title, content, url, published_at, engagement) VALUES ($1, $2, $3, $4, $5, $6, $7)";
                     const objValues = masterImportDataTransform(item);
-                    const insert = await client.query(query, [
+                    await client.query(query, [
                         objValues.external_id,
                         objValues.source,
                         objValues.title,
@@ -63,7 +63,7 @@ try {
             }
             await client.query('COMMIT');   
         }catch(err: any) {
-            console.error(`Gagal pada ${item}. Semua perubahan dibatalkan!`);
+            console.error(`Gagal pada ${item}. Semua insert dibatalkan!`);
             throw err;
         }
     }

@@ -3,6 +3,7 @@ import type { Application, Request, Response } from "express";
 import cors from 'cors'
 import { createServer } from "http";
 import RouteBulk from "./internal/mentions/bulk.ts";
+import RouteMentions from "./mentions/search.ts";
 
 const app: Application = express();
 const httpServer = createServer(app);
@@ -23,6 +24,7 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.use(RouteBulk);
+app.use(RouteMentions);
 
 // app.use(routeAuth)
 // app.use(routeUserNonAuth)

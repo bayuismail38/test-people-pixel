@@ -1,6 +1,6 @@
-import ErrorHandler from "./error";
+import ErrorHandler from "./error.ts";
 
-export class ResponseHandler<T extends Record<string, any> | Array<Record<string, any>>> {
+export default class ResponseHandler<T extends Record<string, any> | Array<Record<string, any>>> {
     private Data: T | null | undefined;
 
     constructor(Data: T | null | undefined) {
@@ -38,6 +38,7 @@ export class ResponseHandler<T extends Record<string, any> | Array<Record<string
                 StatusMessage: status === 200 ? "Sukses" : "Not Found",
             };
         } catch (error) {
+            console.log(error)
             throw new ErrorHandler("Error", "Mapping Responses", 500);
         }
     }

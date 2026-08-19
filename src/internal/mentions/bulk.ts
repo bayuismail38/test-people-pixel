@@ -5,7 +5,6 @@ import { upload } from "../../handler/storage.ts";
 import path from "path";
 import { Worker } from "worker_threads";
 import { fileURLToPath } from "url";
-import { db } from "../../db/db.ts";
 
 
 const RouteBulk = Router();
