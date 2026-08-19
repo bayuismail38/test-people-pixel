@@ -1,5 +1,5 @@
 import { FileImport, StatusFileImport, StatusFileImportInsert } from "../model/fileimportworker.js";
-import { masterImport } from "../model/masterImport.js";
+import { Author, masterImport, sourceList } from "../model/masterImport.js";
 import type Migration from "../types/migration.js";
 
 const migration: Migration[] = [
@@ -9,7 +9,7 @@ const migration: Migration[] = [
     },
     {
         name: "create main table",
-        query: masterImport
+        query: sourceList + Author + masterImport
     },
     {
         name: 'query status import',
