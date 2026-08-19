@@ -17,9 +17,7 @@ RouteMentions.get("/mentions", async (req: Request, res: Response) => {
     try {
         query = `SELECT * FROM master_import WHERE 1=1`;
         if (typeof req.query.q === "string") {
-            querySearch = ` AND 
-            --author LIKE '%${req.query.q}%' OR 
-            content LIKE '%${req.query.q}%' OR title LIKE '%${req.query.q}%' OR source LIKE '%${req.query.q}%'`;
+            querySearch = ` AND author LIKE '%${req.query.q}%' OR content LIKE '%${req.query.q}%' OR title LIKE '%${req.query.q}%' OR source LIKE '%${req.query.q}%'`;
         }
         if (typeof req.query.page === "string") {
             const page = parseInt(req.query.page);

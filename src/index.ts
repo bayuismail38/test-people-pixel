@@ -4,6 +4,7 @@ import cors from 'cors'
 import { createServer } from "http";
 import RouteBulk from "./internal/mentions/bulk.ts";
 import RouteMentions from "./mentions/search.ts";
+import routeStats from "./mentions/stats.ts";
 
 const app: Application = express();
 const httpServer = createServer(app);
@@ -25,6 +26,7 @@ app.get("/", async (req: Request, res: Response) => {
 
 app.use(RouteBulk);
 app.use(RouteMentions);
+app.use(routeStats);
 
 // app.use(routeAuth)
 // app.use(routeUserNonAuth)
