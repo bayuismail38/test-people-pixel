@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Author {
+    name      String @unique @id
+}
+
+model StatusFileImport{
+    id        Int      @id @default(autoincrement())
+    name      String
+    file_imports FileImport[]
+}
+
+model FileImport{
+    id        Int      @id @default(autoincrement())
+    filename String
+    status_id Int
+    status    StatusFileImport @relation(fields: [status_id], references: [id])
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+
