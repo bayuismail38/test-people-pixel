@@ -1,5 +1,6 @@
-import { Request } from "express";
+import type { Request } from "express";
 import multer from "multer"
+import path from "path";
 
 const storage = multer.memoryStorage();
 const jsonFilter = (req: Request, file: Express.Multer.File, cb: Function) => {

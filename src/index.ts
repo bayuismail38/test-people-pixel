@@ -1,7 +1,8 @@
-import express, { Application, Request, Response } from "express";
+import express from "express";
+import type { Application, Request, Response } from "express";
 import cors from 'cors'
 import { createServer } from "http";
-import RouteBulk from "./internal/mentions/bulk";
+import RouteBulk from "./internal/mentions/bulk.ts";
 
 const app: Application = express();
 const httpServer = createServer(app);
