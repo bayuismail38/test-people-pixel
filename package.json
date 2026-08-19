@@ -5,9 +5,9 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc --build --clean && tsc",
-    "migrate": "ts-node ./src/db/main.ts",
-    "dev": "nodemon --watch src --exec ts-node --transpile-only src/index.ts"
+    "build": "tsc --build --clean && tsc && tsx watch src/index.js",
+    "migrate": "ts-node src/db/main.ts",
+    "dev": "tsx watch src/index.ts"
   },
   "keywords": [],
   "author": "",
