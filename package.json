@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --build --clean && tsc",
-    "migrate": "ts-node src/db/main.ts",
+    "migrate": "npx tsx src/db/main.ts",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js" 
   },
