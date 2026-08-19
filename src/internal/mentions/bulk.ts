@@ -30,35 +30,35 @@ RouteBulk.post("/internal/mentions/bulk", upload.single("file"), async (req: Req
             let worker: Worker;
 
             if (isDev) {
-            // --- MODE DEVELOPMENT (Mendukung TSX + ESM) ---
-            const secureWorkerUrl = pathToFileURL(workerPath).href;
-            
-            // String skrip murni untuk mendaftarkan loader tsx di dalam thread anak
-            const workerScript = `
-                import { workerData } from 'node:worker_threads';
-                import('tsx/esm/api').then(({ register }) => {
-                register();
-                import(workerData.workerUrl);
-                });
-            `;
+                // --- MODE DEVELOPMENT (Mendukung TSX + ESM) ---
+                const secureWorkerUrl = pathToFileURL(workerPath).href;
+                
+                // String skrip murni untuk mendaftarkan loader tsx di dalam thread anak
+                const workerScript = `
+                    import { workerData } from 'node:worker_threads';
+                    import('tsx/esm/api').then(({ register }) => {
+                    register();
+                    import(workerData.workerUrl);
+                    });
+                `;
 
-            worker = new Worker(workerScript, {
-                eval: true, // Wajib true karena mengeksekusi string skrip di atas
-                workerData: {
-                workerUrl: secureWorkerUrl,
-                bufferArray: new Uint8Array(req.file!.buffer),
-                fileName: req.file!.originalname
-                }
-            });
+                worker = new Worker(workerScript, {
+                    eval: true, // Wajib true karena mengeksekusi string skrip di atas
+                    workerData: {
+                        workerUrl: secureWorkerUrl,
+                        bufferArray: new Uint8Array(req.file!.buffer),
+                        fileName: req.file!.originalname
+                    }
+                });
             } else {
-            // --- MODE PRODUCTION / BUILD (Menjalankan file .js hasil compile) ---
-            worker = new Worker(workerPath, {
-                eval: false, // Wajib false karena menjalankan file fisik langsung
-                workerData: {
-                bufferArray: new Uint8Array(req.file!.buffer),
-                fileName: req.file!.originalname
-                }
-            });
+                // --- MODE PRODUCTION / BUILD (Menjalankan file .js hasil compile) ---
+                worker = new Worker(workerPath, {
+                    eval: false, // Wajib false karena menjalankan file fisik langsung
+                    workerData: {
+                    bufferArray: new Uint8Array(req.file!.buffer),
+                    fileName: req.file!.originalname
+                    }
+                });
             }
 
             // Event listener untuk Worker
