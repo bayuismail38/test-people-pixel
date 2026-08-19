@@ -3,6 +3,10 @@ const StatusFileImport = `CREATE TABLE IF NOT EXISTS file_import_status (
     status VARCHAR(50) NOT NULL
 );\n`;
 
+const StatusFileImportInsert = `INSERT INTO file_import_status (id, status) VALUES (1, 'On Process');
+INSERT INTO file_import_status (id, status) VALUES (2, 'Done');
+INSERT INTO file_import_status (id, status) VALUES (3, 'Failed');`;
+
 const FileImport = `CREATE TABLE IF NOT EXISTS file_import (
     id SERIAL PRIMARY KEY,
     file_name VARCHAR(255) NOT NULL,
@@ -11,4 +15,4 @@ const FileImport = `CREATE TABLE IF NOT EXISTS file_import (
 );`;
 
 
-export { StatusFileImport, FileImport };
+export { StatusFileImport, StatusFileImportInsert, FileImport };

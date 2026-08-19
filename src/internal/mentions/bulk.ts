@@ -5,6 +5,8 @@ import { upload } from "../../handler/storage.ts";
 import path from "path";
 import { Worker } from "worker_threads";
 import { fileURLToPath } from "url";
+import { db } from "../../db/db.ts";
+
 
 const RouteBulk = Router();
 
@@ -26,7 +28,8 @@ RouteBulk.post("/internal/mentions/bulk", upload.single("file"), async (req: Req
                 const worker = new Worker(workerPath, {
                     // 2. Wrap buffer directly into a structured cloneable Uint8Array array
                     workerData: {
-                        bufferArray: new Uint8Array(req.file.buffer)
+                        bufferArray: new Uint8Array(req.file.buffer),
+                        fileName: req.file.originalname
                     },
                     // 3. MANDATORY FOR TSX SUB-THREADS: This loader enables ESM + TS parsing across threads
                     execArgv: ['--import', 'tsx'] 
