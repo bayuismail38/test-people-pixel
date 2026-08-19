@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
-import { Pool, QueryResult } from "pg";
+import type {QueryResult } from "pg";
+import { Pool } from "pg";
 
 dotenv.config();
 

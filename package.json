@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
+    "migrate": "ts-node src/db/main.ts",
     "dev": "nodemon --watch src --exec ts-node --transpile-only src/index.ts"
   },
   "keywords": [],

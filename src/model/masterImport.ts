@@ -3,9 +3,11 @@ const masterImport = `CREATE TABLE IF NOT EXISTS master_import (
     external_id VARCHAR(255) NOT NULL,
     source VARCHAR(255) NOT NULL,
     title VARCHAR(255) NULL,
-    content LONGTEXT NULL,
+    content TEXT NULL,
     url VARCHAR(255) NULL,
-    published_at DATETIME NULL,
+    published_at TIMESTAMP NULL,
     engagement INT NULL,
-    UNIQUE KEY unique_external_id (external_id, source)
-)`
+    CONSTRAINT unique_external_id UNIQUE (external_id) 
+)`;
+
+export {masterImport};
