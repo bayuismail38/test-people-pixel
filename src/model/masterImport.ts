@@ -9,8 +9,8 @@ const masterImport = `CREATE TABLE IF NOT EXISTS master_import (
     published_at TIMESTAMP NULL,
     engagement INT NULL,
     CONSTRAINT unique_external_id UNIQUE (external_id),
-    CONSTRAINT fk_author_id FOREIGN_KEY(author_id) REFERENCES author(id)
-    CONSTRAINT fk_source_id FOREIGN_KEY(source_id) REFERENCES source_list(id)
+    CONSTRAINT fk_author_id FOREIGN KEY(author_id) REFERENCES author(id) ON DELETE CASCADE,
+    CONSTRAINT fk_source_id FOREIGN KEY(source_id) REFERENCES source_list(id) ON DELETE CASCADE
 )`;
 
 const sourceList = `CREATE TABLE IF NOT EXIST source_list (
