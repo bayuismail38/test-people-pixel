@@ -1,5 +1,6 @@
 export interface MasterImport {
     external_id: string;
+    author: string | null;
     source: string;
     title: string;
     content: string;
@@ -14,6 +15,7 @@ const masterImportDataTransform = (data:any): MasterImport => {
         source: data.source,
         title: data.title,
         content: data.content,
+        author: data.author !== null ? data.author : null,
         url: data.url,
         published_at: new Date(data.published_at),
         engagement: data.engagement !== null ? parseInt(data.engagement) : null,
