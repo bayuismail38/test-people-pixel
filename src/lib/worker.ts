@@ -38,13 +38,13 @@ try {
             itemOnMemory = item;
             await client.query('BEGIN');
             const objValues = masterImportDataTransform(item);
-            dataAuthor = await client.query('SELECT id from author where author_name = $1', [String(objValues.author).toLowerCase]);
+            dataAuthor = await client.query('SELECT id from author where author_name ILIKE $1', [String(objValues.author).toLowerCase()]);
             console.log(dataAuthor)
             if (dataAuthor.rowCount == 0) {
                 dataAuthor = await client.query('INSERT INTO author (author_name) VALUES ($1) RETURNING id', [String(objValues.author).toLowerCase()]);
             }
 
-            dataSource = await client.query('SELECT id FROM source_list WHERE source = $1', [String(objValues.source).toLowerCase()]);
+            dataSource = await client.query('SELECT id FROM source_list WHERE source ILIKE $1', [String(objValues.source).toLowerCase()]);
             if (dataSource.rowCount == 0) {
                 dataSource = await client.query("INSERT INTO source_list (source) VALUES ($1) RETURNING id", [String(objValues.source).toLowerCase()])
             }

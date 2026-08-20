@@ -15,11 +15,13 @@ const masterImport = `CREATE TABLE IF NOT EXISTS master_import (
 
 const sourceList = `CREATE TABLE IF NOT EXISTS source_list (
     id SERIAL PRIMARY KEY,
-    source VARCHAR(255) NULL
+    source VARCHAR(255) NULL,
+    CONSTRAINT unique_source_name UNIQUE (source)
 );\n`;
 
 const Author = `CREATE TABLE IF NOT EXISTS author (
     id SERIAL PRIMARY KEY,
-    author_name VARCHAR(255) NULL
+    author_name VARCHAR(255) NULL,
+    CONSTRAINT unique_source UNIQUE (author_name)
 );\n`
 export {masterImport, sourceList, Author};
