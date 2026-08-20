@@ -39,7 +39,7 @@ RouteMentions.get("/mentions", async (req: Request, res: Response) => {
             queryDate = ` AND published_at BETWEEN '${fromDate.toISOString()}' AND '${toDate.toISOString()}'`;
         }
         const { rows } = await client.query(query + (querySearch || "") + (queryPage || "") + (queryDate || ""));
-
+        console.log(query + (querySearch || "") + (queryPage || "") + (queryDate || ""))
         const response = new ResponseHandler<MasterImport[]>(rows).responses()
 
         return res.status(response.StatusCode).json(response)

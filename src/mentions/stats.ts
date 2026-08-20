@@ -8,16 +8,17 @@ const routeStats = Router();
 
 routeStats.get("/mentions/stats", async (req: Request, res: Response) => {
     let query = `SELECT
-                    author as Author,
+                    author.author_name,
+                    author.id,
                     TO_CHAR(published_at, 'FMDay') as Day,
                     COUNT(*) as total_post,
                     (SUM(engagement)*1.0/(SELECT SUM(engagement) FROM master_import)) as percentage_engagement,
                     SUM(engagement) as total_engagement
-                FROM
-                    master_import
+                FROM master_import
+                JOIN author ON author.id = master_import.author_id
                 WHERE
                     1 = 1
-                GROUP BY author, published_at`;
+                GROUP BY author.id, published_at`;
     let queryIsGroup = false;
     const client = await db.pool.connect();
 
